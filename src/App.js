@@ -4,6 +4,7 @@ import LoginForm from './components/LoginForm'
 import blogService from './services/blogs'
 import Blog from './components/Blog'
 import Notification from './components/Notification'
+import Button from './components/Button'
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -16,13 +17,21 @@ const App = () => {
   useEffect(() => {
     if (user) {
       const fetchBlogs = async () => {
-        const authToken = { headers: { Authorization: `Bearer ${user.token}` } }
-        const respondedBlogs = await blogService.getAll(authToken)
+        const respondedBlogs = await blogService.getAll()
         setBlogs(respondedBlogs)
       }
       fetchBlogs()
     }
   }, [user])
+
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedBlogUser')
+    if (loggedUserJSON) {
+      const loggedUser = JSON.parse(loggedUserJSON)
+      setUser(loggedUser)
+      blogService.setToken(loggedUser.token)
+    }
+  }, [])
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -31,6 +40,8 @@ const App = () => {
         username,
         password,
       })
+      window.localStorage.setItem('loggedBlogUser', JSON.stringify(loginUser))
+      blogService.setToken(loginUser.token)
       setUser(loginUser)
       setUsername('')
       setPassword('')
@@ -44,10 +55,19 @@ const App = () => {
     }
   }
 
+  const handleLogout = (event) => {
+    event.preventDefault()
+    localStorage.removeItem('loggedBlogUser')
+    setUser(null)
+  }
+
   const blogList = () => (
     <div>
       <h2>blogs</h2>
-      <p>{user.name} logged-in</p>
+      <p>
+        {user.name} logged-in{' '}
+        <Button text="logout" eventHandler={handleLogout} buttonType="submit" />
+      </p>
       {blogs.map((blog) => (
         <Blog key={blog.id} blog={blog} />
       ))}

@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+# Part5 Exercise: Frontend for bloglist
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Exercises 5.1.-5.4.
 
-## Available Scripts
+We will now create a frontend for the bloglist backend we created in the last part. You can use [this application](https://github.com/fullstack-hy/bloglist-frontend/) from GitHub as the base of your solution. The application expects your backend to be running on port 3003.
 
-In the project directory, you can run:
+The first few exercises revise everything we have learned about React so far. They can be challenging, especially if your backend is incomplete. It might be best to use the backend from model answers of part 4.
 
-### `npm start`
+While doing the exercises, remember all of the debugging methods we have talked about, especially keeping an eye on the console.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**Warning:** If you notice you are mixing in same function async/await and `then` commands, it's 99.9% certain you are doing something wrong. Use either or, never both.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Step 1
 
-### `npm test`
+Clone the application from [Github](https://github.com/fullstack-hy/bloglist-frontend) with the command:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```Shell
+git clone https://github.com/fullstack-hy/bloglist-frontend
+```
 
-### `npm run build`
+_remove the git configuration of the cloned application_
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```Shell
+cd bloglist-frontend   // go to cloned repository
+rm -rf .git
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The application is started the usual way, but you have to install its dependencies first:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```Shell
+npm install
+npm start
+```
 
-### `npm run eject`
+Implement login functionality to the frontend. The token returned with a successful login is saved to the application's state _user_.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+If a user is not logged-in, _only_ the login form is visible.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+If user is logged-in, the name of the user and a list of blogs is shown.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+User details of the logged-in user do not have to be saved to the local storage yet.

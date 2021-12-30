@@ -45,3 +45,13 @@ User details of the logged-in user do not have to be saved to the local storage 
 Make the login 'permanent' by using the local storage. Also implement a way to log out.
 
 Ensure the browser does not remember the details of the user after logging out.
+
+## Step 3
+
+Expand your application to allow a logged-in user to add new blogs.
+
+## Step 4
+
+Implement notifications which inform the user about successful and unsuccessful operations at the top of the page.
+
+The notifications must be visible for a few seconds. It is not compulsory to add colors.

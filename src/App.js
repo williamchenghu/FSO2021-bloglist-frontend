@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import loginService from './services/login'
 import LoginForm from './components/LoginForm'
 import blogService from './services/blogs'
-import Blog from './components/Blog'
-import Notification from './components/Notification'
-import Button from './components/Button'
+import BlogDetail from './components/BlogDetail'
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -13,6 +10,9 @@ const App = () => {
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState(null)
   const [messageType, setMessageType] = useState()
+  const [title, setTitle] = useState('')
+  const [author, setAuthor] = useState('')
+  const [url, setUrl] = useState('')
 
   useEffect(() => {
     if (user) {
@@ -33,62 +33,35 @@ const App = () => {
     }
   }, [])
 
-  const handleLogin = async (event) => {
-    event.preventDefault()
-    try {
-      const loginUser = await loginService.login({
-        username,
-        password,
-      })
-      window.localStorage.setItem('loggedBlogUser', JSON.stringify(loginUser))
-      blogService.setToken(loginUser.token)
-      setUser(loginUser)
-      setUsername('')
-      setPassword('')
-    } catch (exception) {
-      setMessageType(false)
-      setMessage('Wrong credentials')
-      setTimeout(() => {
-        setMessage(null)
-        setMessageType()
-      }, 5000)
-    }
-  }
-
-  const handleLogout = (event) => {
-    event.preventDefault()
-    localStorage.removeItem('loggedBlogUser')
-    setUser(null)
-  }
-
-  const blogList = () => (
-    <div>
-      <h2>blogs</h2>
-      <p>
-        {user.name} logged-in{' '}
-        <Button text="logout" eventHandler={handleLogout} buttonType="submit" />
-      </p>
-      {blogs.map((blog) => (
-        <Blog key={blog.id} blog={blog} />
-      ))}
-    </div>
-  )
-
-  return (
-    <>
-      <Notification message={message} messageType={messageType} />
-      {!user ? (
-        <LoginForm
-          username={username}
-          setUsername={setUsername}
-          password={password}
-          setPassword={setPassword}
-          handleLogin={handleLogin}
-        />
-      ) : (
-        blogList()
-      )}
-    </>
+  return !user ? (
+    <LoginForm
+      username={username}
+      setUsername={setUsername}
+      password={password}
+      setPassword={setPassword}
+      setUser={setUser}
+      message={message}
+      setMessage={setMessage}
+      messageType={messageType}
+      setMessageType={setMessageType}
+    />
+  ) : (
+    <BlogDetail
+      user={user}
+      setUser={setUser}
+      blogs={blogs}
+      setBlogs={setBlogs}
+      title={title}
+      setTitle={setTitle}
+      author={author}
+      setAuthor={setAuthor}
+      url={url}
+      setUrl={setUrl}
+      message={message}
+      setMessage={setMessage}
+      messageType={messageType}
+      setMessageType={setMessageType}
+    />
   )
 }
 

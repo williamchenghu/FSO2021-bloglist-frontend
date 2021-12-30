@@ -20,9 +20,6 @@ const Notification = ({ message, messageType }) => {
     marginBottom: 10,
   }
 
-  // console.log(`message`, message);
-  // console.log(`messageType`, messageType);
-
   if (messageType === undefined) {
     return message
   }

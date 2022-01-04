@@ -55,3 +55,17 @@ Expand your application to allow a logged-in user to add new blogs.
 Implement notifications which inform the user about successful and unsuccessful operations at the top of the page.
 
 The notifications must be visible for a few seconds. It is not compulsory to add colors.
+
+## Exercises 5.5.-5.10.
+
+### Step 5
+
+Change the form for creating blog posts so that it is only displayed when appropriate. Use functionality similar to what was shown [earlier in this part of the course material](https://fullstackopen.com/en/part5/props_children_and_proptypes#displaying-the-login-form-only-when-appropriate). If you wish to do so, you can use the _Togglable_ component defined in part 5.
+
+By default the form is not visible. It expands when button _create new blog_ is clicked. The form closes when a new blog is created.
+
+### Step 6
+
+Separate the form for creating a new blog into its own component (if you have not already done so), and move all the states required for creating a new blog to this component.
+
+The component must work like the _NoteForm_ component from the [material](https://fullstackopen.com/en/part5/props_children_and_proptypes) of this part.

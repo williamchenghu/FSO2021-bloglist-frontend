@@ -10,9 +10,6 @@ const App = () => {
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState(null)
   const [messageType, setMessageType] = useState()
-  const [title, setTitle] = useState('')
-  const [author, setAuthor] = useState('')
-  const [url, setUrl] = useState('')
 
   useEffect(() => {
     if (user) {
@@ -51,12 +48,6 @@ const App = () => {
       setUser={setUser}
       blogs={blogs}
       setBlogs={setBlogs}
-      title={title}
-      setTitle={setTitle}
-      author={author}
-      setAuthor={setAuthor}
-      url={url}
-      setUrl={setUrl}
       message={message}
       setMessage={setMessage}
       messageType={messageType}

@@ -1,31 +1,25 @@
-import React from 'react'
-import blogService from '../services/blogs'
+import React, { useState } from 'react'
 import Button from './Button'
 import InputField from './InputField'
 
-const BlogForm = ({
-  title,
-  setTitle,
-  author,
-  setAuthor,
-  url,
-  setUrl,
-  blogs,
-  setBlogs,
-  setMessage,
-  setMessageType,
-}) => {
+const BlogForm = ({ setMessage, setMessageType, createBlog }) => {
+  const [title, setTitle] = useState('')
+  const [author, setAuthor] = useState('')
+  const [url, setUrl] = useState('')
+
+  const blogToBeCreated = {
+    title,
+    author,
+    url,
+  }
   const handleTitleChange = ({ target }) => setTitle(target.value)
   const handleAuthorChange = ({ target }) => setAuthor(target.value)
   const handleUrlChange = ({ target }) => setUrl(target.value)
-  const handleBlogCreation = async (event) => {
+  const handleBlogCreation = (event) => {
     event.preventDefault()
+
     try {
-      const blogToBeCreated = await blogService.create({
-        title,
-        author,
-        url,
-      })
+      createBlog(blogToBeCreated)
       setMessageType(true)
       setMessage(
         `a new blog ${blogToBeCreated.title} by ${blogToBeCreated.author} added`
@@ -34,7 +28,6 @@ const BlogForm = ({
         setMessage(null)
         setMessageType()
       }, 5000)
-      setBlogs(blogs.concat(blogToBeCreated))
       setTitle('')
       setAuthor('')
       setUrl('')

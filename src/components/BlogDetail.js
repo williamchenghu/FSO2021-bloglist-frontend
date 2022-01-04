@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Notification from './Notification'
 import Blog from './Blog'
 import Button from './Button'
 import BlogForm from './BlogForm'
+import ToggleView from './ToggleView'
+import blogService from '../services/blogs'
 
 const BlogDetail = ({
   user,
@@ -13,17 +15,19 @@ const BlogDetail = ({
   setMessage,
   messageType,
   setMessageType,
-  title,
-  setTitle,
-  author,
-  setAuthor,
-  url,
-  setUrl,
 }) => {
+  const blogFormRef = useRef()
+
   const handleLogout = (event) => {
     event.preventDefault()
     localStorage.removeItem('loggedBlogUser')
     setUser(null)
+  }
+
+  const createBlog = async (blogObject) => {
+    blogFormRef.current.toggleVisibility()
+    const blogToCreate = await blogService.create(blogObject)
+    setBlogs(blogs.concat(blogToCreate))
   }
 
   return (
@@ -34,18 +38,13 @@ const BlogDetail = ({
         {user.name} logged-in{' '}
         <Button text="logout" eventHandler={handleLogout} buttonType="submit" />
       </p>
-      <BlogForm
-        title={title}
-        setTitle={setTitle}
-        author={author}
-        setAuthor={setAuthor}
-        url={url}
-        setUrl={setUrl}
-        blogs={blogs}
-        setBlogs={setBlogs}
-        setMessage={setMessage}
-        setMessageType={setMessageType}
-      />
+      <ToggleView buttonText="create new blog" ref={blogFormRef}>
+        <BlogForm
+          setMessage={setMessage}
+          setMessageType={setMessageType}
+          createBlog={createBlog}
+        />
+      </ToggleView>
       {blogs.map((blog) => (
         <Blog key={blog.id} blog={blog} />
       ))}

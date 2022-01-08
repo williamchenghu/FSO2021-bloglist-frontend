@@ -118,3 +118,7 @@ You would have to make an HTTP PUT request to the address _/api/blogs/5a43fde2cb
   "url": "https://www.joelonsoftware.com/2000/08/09/the-joel-test-12-steps-to-better-code/"
 }
 ```
+
+### Step 9
+
+Modify the application to list the blog posts by the number of _likes_. Sorting the blog posts can be done with the array [sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) method.

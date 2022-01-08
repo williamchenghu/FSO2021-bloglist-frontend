@@ -15,7 +15,10 @@ const App = () => {
     if (user) {
       const fetchBlogs = async () => {
         const respondedBlogs = await blogService.getAll()
-        setBlogs(respondedBlogs)
+        const blogsSortByLikes = respondedBlogs.sort(
+          (a, b) => b.likes - a.likes
+        )
+        setBlogs(blogsSortByLikes)
       }
       fetchBlogs()
     }

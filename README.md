@@ -69,3 +69,19 @@ By default the form is not visible. It expands when button _create new blog_ is 
 Separate the form for creating a new blog into its own component (if you have not already done so), and move all the states required for creating a new blog to this component.
 
 The component must work like the _NoteForm_ component from the [material](https://fullstackopen.com/en/part5/props_children_and_proptypes) of this part.
+
+### Step 7
+
+Let's add a button to each blog, which controls whether all of the details about the blog are shown or not.
+
+Full details of the blog open when the button is clicked.
+
+And the details are hidden when the button is clicked again.
+
+At this point the _like_ button does not need to do anything.
+
+The application has a bit of additional CSS to improve its appearance.
+
+It is easy to add styles to the application as shown in part 2 using [inline](https://fullstackopen.com/en/part2/adding_styles_to_react_app#inline-styles) styles
+
+**NB:** even though the functionality implemented in this part is almost identical to the functionality provided by the _Togglable_ component, the component can not be used directly to achieve the desired behavior. The easiest solution will be to add state to the blog post that controls the displayed form of the blog post.

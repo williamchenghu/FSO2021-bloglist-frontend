@@ -38,7 +38,11 @@ const BlogDetail = ({
         {user.name} logged-in{' '}
         <Button text="logout" eventHandler={handleLogout} buttonType="submit" />
       </p>
-      <ToggleView buttonText="create new blog" ref={blogFormRef}>
+      <ToggleView
+        buttonTextToShow="create new blog"
+        buttonTextToHide="cancel"
+        ref={blogFormRef}
+      >
         <BlogForm
           setMessage={setMessage}
           setMessageType={setMessageType}

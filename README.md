@@ -122,3 +122,11 @@ You would have to make an HTTP PUT request to the address _/api/blogs/5a43fde2cb
 ### Step 9
 
 Modify the application to list the blog posts by the number of _likes_. Sorting the blog posts can be done with the array [sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) method.
+
+### Step 10
+
+Add a new button for deleting blog posts. Also implement the logic for deleting blog posts in the frontend.
+
+The confirmation dialog for deleting a blog post is easy to implement with the [window.confirm](https://developer.mozilla.org/en-US/docs/Web/API/Window/confirm) function.
+
+Show the button for deleting a blog post only if the blog post was added by the user.

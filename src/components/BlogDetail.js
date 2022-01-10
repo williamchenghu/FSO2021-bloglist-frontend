@@ -30,6 +30,29 @@ const BlogDetail = ({
     setBlogs(blogs.concat(blogToCreate))
   }
 
+  const removeBlog = async (blogId) => {
+    const blogToBeRemoved = blogs.find((e) => e.id === blogId)
+    try {
+      await blogService.remove(blogId)
+      setBlogs(blogs.filter((e) => e.id !== blogId))
+      setMessageType(true)
+      setMessage(
+        `Blog ${blogToBeRemoved.title} by ${blogToBeRemoved.author} removed.`
+      )
+      setTimeout(() => {
+        setMessage(null)
+        setMessageType()
+      }, 5000)
+    } catch (exception) {
+      setMessageType(false)
+      setMessage('Cannot delete the blog, perhaps that does not belong to you?')
+      setTimeout(() => {
+        setMessage(null)
+        setMessageType()
+      }, 5000)
+    }
+  }
+
   return (
     <div>
       <h2>blogs</h2>
@@ -50,7 +73,7 @@ const BlogDetail = ({
         />
       </ToggleView>
       {blogs.map((blog) => (
-        <Blog key={blog.id} blog={blog} />
+        <Blog key={blog.id} blog={blog} handleBlogRemove={removeBlog} />
       ))}
     </div>
   )

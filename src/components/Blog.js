@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Button from './Button'
 import blogService from '../services/blogs'
 
-const Blog = ({ blog }) => {
+const Blog = ({ blog, handleBlogRemove }) => {
   const blogStyle = {
     paddingTop: 10,
     paddingLeft: 2,
@@ -32,6 +32,11 @@ const Blog = ({ blog }) => {
     setLikes(blogLikesUpdate.likes)
   }
 
+  const handleRemove = () =>
+    // eslint-disable-next-line no-alert
+    window.confirm(`Remove blog ${blog.title} by ${blog.author}?`) &&
+    handleBlogRemove(blog.id)
+
   return (
     <div style={blogStyle}>
       <div>
@@ -45,6 +50,7 @@ const Blog = ({ blog }) => {
           <Button text="like" eventHandler={handleLike} />
         </div>
         <div>{blog.user.name}</div>
+        <Button text="remove" eventHandler={handleRemove} />
       </div>
     </div>
   )

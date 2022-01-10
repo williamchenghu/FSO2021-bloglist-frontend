@@ -15,11 +15,11 @@ const BlogForm = ({ setMessage, setMessageType, createBlog }) => {
   const handleTitleChange = ({ target }) => setTitle(target.value)
   const handleAuthorChange = ({ target }) => setAuthor(target.value)
   const handleUrlChange = ({ target }) => setUrl(target.value)
-  const handleBlogCreation = (event) => {
+  const handleBlogCreation = async (event) => {
     event.preventDefault()
 
     try {
-      createBlog(blogToBeCreated)
+      await createBlog(blogToBeCreated)
       setMessageType(true)
       setMessage(
         `a new blog ${blogToBeCreated.title} by ${blogToBeCreated.author} added`

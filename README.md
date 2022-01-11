@@ -130,3 +130,17 @@ Add a new button for deleting blog posts. Also implement the logic for deleting 
 The confirmation dialog for deleting a blog post is easy to implement with the [window.confirm](https://developer.mozilla.org/en-US/docs/Web/API/Window/confirm) function.
 
 Show the button for deleting a blog post only if the blog post was added by the user.
+
+## Exercises 5.11.-5.12.
+
+### Step 11
+
+efine PropTypes for one of the components of your application.
+
+### Step 12
+
+Add ESlint to the project. Define the configuration according to your liking. Fix all of the linter errors.
+
+Create-react-app has installed ESlint to the project by default, so all that's left for you to do is to define your desired configuration in the _.eslintrc.js_ file.
+
+**NB:** do not run the `eslint --init` command. It will install the latest version of ESlint that is not compatible with the configuration file created by create-react-app!

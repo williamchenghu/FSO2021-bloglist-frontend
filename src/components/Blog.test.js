@@ -2,6 +2,7 @@ import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { render, fireEvent } from '@testing-library/react'
 import Blog from './Blog'
+import Button from './Button'
 
 describe('blog display without details', () => {
   let component
@@ -57,4 +58,13 @@ describe('blog display details upon view button click', () => {
     const detailedBlog = component.container.querySelector('.detailedBlog')
     expect(detailedBlog).not.toHaveStyle('display: none')
   })
+})
+
+test('clicking the like twice calls event handler twice', () => {
+  const mockHandler = jest.fn()
+  const component = render(<Button text="like" eventHandler={mockHandler} />)
+  const likeButton = component.getByText('like')
+  fireEvent.click(likeButton)
+  fireEvent.click(likeButton)
+  expect(mockHandler.mock.calls).toHaveLength(2)
 })

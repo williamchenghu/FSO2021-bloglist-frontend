@@ -156,3 +156,7 @@ Add CSS-classes to the component to help the testing as necessary.
 ### Step 14
 
 Make a test which checks that the blog's url and number of likes are shown when the button controlling the shown details has been clicked.
+
+### Step 15
+
+Make a test which ensures that if the _like_ button is clicked twice, the event handler the component received as props is called twice.

@@ -1,9 +1,9 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
-import { render } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 import Blog from './Blog'
 
-describe('test blog display without details', () => {
+describe('blog display without details', () => {
   let component
   const blog = {
     user: {
@@ -30,5 +30,31 @@ describe('test blog display without details', () => {
   test('shows url & likes', () => {
     const detailedBlog = component.container.querySelector('.detailedBlog')
     expect(detailedBlog).toHaveStyle('display: none')
+  })
+})
+
+describe('blog display details upon view button click', () => {
+  let component
+  const blog = {
+    user: {
+      id: 'testUser',
+      name: 'Test User',
+    },
+    id: 'randomIdForTest',
+    likes: 10,
+    author: 'testAuthor',
+    title: 'Blog for test',
+    url: 'http://testBlog',
+  }
+
+  beforeEach(() => {
+    component = render(<Blog blog={blog} />)
+  })
+
+  test('render content', () => {
+    const showDetails = component.getByText('view')
+    fireEvent.click(showDetails)
+    const detailedBlog = component.container.querySelector('.detailedBlog')
+    expect(detailedBlog).not.toHaveStyle('display: none')
   })
 })

@@ -144,3 +144,11 @@ Add ESlint to the project. Define the configuration according to your liking. Fi
 Create-react-app has installed ESlint to the project by default, so all that's left for you to do is to define your desired configuration in the _.eslintrc.js_ file.
 
 **NB:** do not run the `eslint --init` command. It will install the latest version of ESlint that is not compatible with the configuration file created by create-react-app!
+
+## Exercise 5.13-5.16.
+
+### Step 13
+
+Make a test which checks that the component displaying a blog renders the blog's title and author, but does not render its url or number of likes by default.
+
+Add CSS-classes to the component to help the testing as necessary.

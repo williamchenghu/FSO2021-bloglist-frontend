@@ -39,11 +39,11 @@ const Blog = ({ blog, handleBlogRemove }) => {
 
   return (
     <div style={blogStyle}>
-      <div>
+      <div className="lessDetailedBlog">
         {blog.title} {blog.author}{' '}
         <Button text={buttonText} eventHandler={toggleVisibility} />
       </div>
-      <div style={visibilityStyle}>
+      <div style={visibilityStyle} className="detailedBlog">
         <div>{blog.url}</div>
         <div>
           likes {likes}
